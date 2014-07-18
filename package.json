@@ -1,0 +1,40 @@
+{
+  "name": "immutable-map",
+  "version": "0.1.0",
+  "description": "HAMT-based persistent map implementation",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha -R spec",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- -R dot --check-leaks",
+     "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --check-leaks"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ActiveObject/immutable-map.git"
+  },
+  "keywords": [
+    "map",
+    "hamt",
+    "persistent",
+    "immutable",
+    "data",
+    "structure"
+  ],
+  "author": "Vasyl Pryimachuk <activeobject.ac@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ActiveObject/immutable-map/issues"
+  },
+  "homepage": "https://github.com/ActiveObject/immutable-map",
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "istanbul": "^0.3.0",
+    "mocha": "^1.20.1"
+  },
+  "dependencies": {
+    "immutable-trie": "^0.3.0"
+  }
+}
