@@ -41,6 +41,79 @@ describe('Map', function() {
       expect(map.get('BBBB')).to.equal('value2');
       expect(map.get('AaBB')).to.equal('value3');
     });
+
+    it('should leave only last value of two different values with equal keys', function() {
+      var map = Map.Empty.set('key', 'value1').set('key', 'value2');
+
+      expect(map.get('key')).to.equal('value2');
+    });
+  });
+
+  describe('#has', function() {
+    it('should return false on empty map', function() {
+      expect(Map.Empty.has('key')).to.be.false;
+    });
+
+    it('should return true if key is present', function() {
+      var map = Map.Empty.set('key', 'value');
+      expect(map.has('key')).to.be.true;
+    });
+
+    it('should return false if key is missing', function() {
+      var map = Map.Empty.set('key', 'value');
+      expect(map.has('missing')).to.be.false;
+    });
+
+    it('should work on "falsy" values', function() {
+      var map = Map.Empty
+        .set('zero', 0)
+        .set('emptyString', '')
+        .set('false', false)
+        .set('null', null)
+        .set('undefined', undefined)
+
+      expect(map.has('zero')).to.be.true;
+      expect(map.has('emptyString')).to.be.true;
+      expect(map.has('false')).to.be.true;
+      expect(map.has('null')).to.be.true;
+      expect(map.has('undefined')).to.be.true;
+    })
+  });
+
+  describe('#delete', function() {
+    it('should work on empty map', function() {
+      expect(Map.Empty.delete('missing')).to.equal(Map.Empty);
+    });
+
+    it('should return Map.Empty if map contains only one item', function() {
+      expect(Map.Empty.set('key', 'value').delete('key')).to.equal(Map.Empty);
+    });
+
+    it('should return this map if key is missing', function() {
+      expect(Map.Empty.delete('missing')).to.equal(Map.Empty);
+
+      var m = Map.Empty.set('key', 'value');
+      expect(m.delete('missing')).to.equal(m);
+    });
+
+    it('should return map without deleted value if key is present', function() {
+      var m1 = Map.Empty.set('key', 'value');
+      var m2 = m1.delete('key');
+      expect(m2.has('key')).to.be.false;
+    });
+
+    it('should work on multi-element map', function() {
+      var m1 = Map.Empty
+        .set('key1', 'value1')
+        .set('key2', 'value2')
+        .set('key3', 'value3')
+
+      var m2 = m1.delete('key2');
+
+      expect(m2.has('key2')).to.be.false;
+      expect(m2.get('key1')).to.equal('value1');
+      expect(m2.get('key3')).to.equal('value3');
+    });
   });
 
   describe('#reduce', function () {

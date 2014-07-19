@@ -27,8 +27,17 @@ Map.prototype.has = function(key) {
 };
 
 Map.prototype.delete = function(key) {
-  var newRoot = this.root.without(0, hashCode(key), key);
-  return newRoot === this.root ? this : new Map(this.size - 1, newRoot);
+  var newRoot = this.root.without(0, this.hash(key), key);
+
+  if (newRoot === this.root) {
+    return this;
+  }
+
+  if (newRoot.children.length === 0) {
+    return Map.Empty;
+  }
+
+  return new Map(this.size - 1, newRoot);
 };
 
 Map.prototype.keys = function() {

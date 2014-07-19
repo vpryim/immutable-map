@@ -35,6 +35,6 @@
     "mocha": "^1.20.1"
   },
   "dependencies": {
-    "immutable-trie": "^0.3.0"
+    "immutable-trie": "^0.3.2"
   }
 }
