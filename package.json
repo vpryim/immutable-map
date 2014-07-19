@@ -1,6 +1,6 @@
 {
   "name": "immutable-map",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "HAMT-based persistent map implementation",
   "main": "index.js",
   "directories": {
