@@ -61,7 +61,7 @@ Map.prototype.values = function() {
 Map.prototype.entries = function() {
   var i = -1;
 
-  return this.root.reduce(function(entries, key, value) {
+  return this.root.kvreduce(function(entries, key, value) {
     entries[++i] = [key, value];
     return entries;
   }, new Array(this.size));

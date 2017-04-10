@@ -157,4 +157,14 @@ describe('Map', function() {
       })).to.be.true;
     });
   });
+
+  describe('#entries', function () {
+    it('should return a list of map entries', function () {
+      var m = Map.Empty
+        .set('first', 1)
+        .set('second', 2);
+
+      expect(m.entries()).to.deep.equal([['first', 1], ['second', 2]]);
+    });
+  });
 });
